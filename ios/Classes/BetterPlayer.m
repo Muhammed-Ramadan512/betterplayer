@@ -555,12 +555,14 @@ static inline CGFloat radiansToDegrees(CGFloat radians) {
                (speed < 1.0 && _player.currentItem.canPlaySlowForward)) {
         _playerRate = speed;
         result(nil);
-    } else {
+    }else if ((speed > 1.0) || (speed < 1.0)) { _playerRate = speed; result(nil); }
+     else {
         if (speed > 1.0) {
             result([FlutterError errorWithCode:@"unsupported_fast_forward"
                                        message:@"This video cannot be played fast forward"
                                        details:nil]);
-        } else {
+        } 
+        else {
             result([FlutterError errorWithCode:@"unsupported_slow_forward"
                                        message:@"This video cannot be played slow forward"
                                        details:nil]);
