@@ -1,6 +1,4 @@
 import 'package:better_player/better_player.dart';
-import 'package:better_player_example/constants.dart';
-import 'package:better_player_example/utils.dart';
 import 'package:flutter/material.dart';
 
 class BasicPlayerPage extends StatefulWidget {
@@ -28,27 +26,8 @@ class _BasicPlayerPageState extends State<BasicPlayerPage> {
           AspectRatio(
             aspectRatio: 16 / 9,
             child: BetterPlayer.network(
-              Constants.forBiggerBlazesUrl,
-            ),
+                "https://vz-7b6a17bc-fc1.b-cdn.net/139dee96-0c7b-4abe-8e91-d0f4dcda36a8/playlist.m3u8"),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Text(
-              "Next player shows video from file.",
-              style: TextStyle(fontSize: 16),
-            ),
-          ),
-          const SizedBox(height: 8),
-          FutureBuilder<String>(
-            future: Utils.getFileUrl(Constants.fileTestVideoUrl),
-            builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-              if (snapshot.data != null) {
-                return BetterPlayer.file(snapshot.data!);
-              } else {
-                return const SizedBox();
-              }
-            },
-          )
         ],
       ),
     );
